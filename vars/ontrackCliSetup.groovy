@@ -293,7 +293,8 @@ def call(Map<String, ?> params = [:]) {
             )
             GraphQL.checkForMutationErrors(gitLabProjectResponse, 'setProjectGitLabConfigurationProperty')
         } else {
-            throw new RuntimeException("SCM not supported: $scm")
+            //throw new RuntimeException("SCM not supported: $scm")
+            println "SCM not supported: $scm"
         }
 
         // Branch Git configuration
