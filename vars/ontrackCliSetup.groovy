@@ -21,14 +21,14 @@ def call(Map<String, ?> params = [:]) {
     }
 
     // Computing the Ontrack project name from the Git URL
-    String project = ParamUtils.getParam(params, "project", OntrackUtils.getProjectName(env.GIT_URL))
+    String project = ParamUtils.getParam(params, "project", { return OntrackUtils.getProjectName(env.GIT_URL) })
     env.ONTRACK_PROJECT_NAME = project
     if (logging) {
         println("[ontrack-cli-setup] ONTRACK_PROJECT_NAME = ${env.ONTRACK_PROJECT_NAME}")
     }
 
     // Computing the Ontrack branch name from the branch name
-    String branch = ParamUtils.getParam(params, "branch", OntrackUtils.getBranchName(env.BRANCH_NAME))
+    String branch = ParamUtils.getParam(params, "branch", { return OntrackUtils.getBranchName(env.BRANCH_NAME) })
     env.ONTRACK_BRANCH_NAME = branch
     if (logging) {
         println("[ontrack-cli-setup] ONTRACK_BRANCH_NAME = ${env.ONTRACK_BRANCH_NAME}")

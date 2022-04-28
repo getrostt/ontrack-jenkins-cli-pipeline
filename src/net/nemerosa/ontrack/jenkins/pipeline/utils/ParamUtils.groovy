@@ -32,6 +32,17 @@ class ParamUtils {
         }
     }
 
+    static String getParam(Map params, String key, Closure defaultValue) {
+        String value = params[key] as String
+        if (value) {
+            return value
+        } else if (defaultValue) {
+            return defaultValue()
+        } else {
+            throw new IllegalArgumentException("Missing parameter: $key")
+        }
+    }
+
     static String getConditionalParam(Map params, String key, boolean required, String defaultValue) {
         String value = params[key] as String
         if (value) {
